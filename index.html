@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNDER DESTRUCTION | Shreyash Srivastva</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 2px solid #8b0000;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .author {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Download section */
+        .download-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: #8b0000;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .download-btn:hover {
+            background-color: #a00;
+        }
+        
+        /* Poems grid */
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .poem-card {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-left: 3px solid #8b0000;
+        }
+        
+        .poem-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .poem-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #8b0000;
+            font-size: 1.1rem;
+        }
+        
+        .poem-content {
+            white-space: pre-line;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        .poem-page {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 1rem;
+            text-align: right;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-link {
+            color: #fff;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>UNDER DESTRUCTION</h1>
+        <p class="author">By Shreyash Srivastva</p>
+    </header>
+    
+    <div class="container">
+        <section class="download-section">
+            <h2>Download the Complete Collection</h2>
+            <p>Get the full PDF version of UNDER DESTRUCTION with all poems</p>
+            <a href="UNDER_DESTRUCTION.pdf" class="download-btn" download>Download PDF</a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #777;">
+                If download doesn't start automatically, <a href="UNDER_DESTRUCTION.pdf" download>click here</a>
+            </p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Author dedicates this book to the street lamp he saw the other day.</p>
+        <p style="margin-top: 1rem;">
+            <a href="https://x.com/iamsrivastva" class="social-link" target="_blank">@iamsrivastva</a>
+        </p>
+    </footer>
+    
+    <script>
+        // Add a confirmation when downloading
+        document.querySelector('.download-btn').addEventListener('click', function(e) {
+            if(!confirm('Download UNDER DESTRUCTION by Shreyash Srivastva?')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Auto-download after 3 seconds (optional)
+        // Uncomment the following if you want automatic download
+        /*
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = 'UNDER_DESTRUCTION.pdf';
+            }, 3000);
+        };
+        */
+    </script>
+</body>
+</html>
