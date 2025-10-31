@@ -27,7 +27,7 @@
     .btn{background:linear-gradient(90deg,var(--accent),#ffb86b);border:none;padding:12px 18px;border-radius:10px;color:#071325;font-weight:700;cursor:pointer;font-size:15px;text-decoration:none}
     .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfe6ff}
     .meta{margin-top:14px;color:var(--muted);font-size:14px}
-    .preview{height:520px;border-radius:10px;overflow:hidden;background:var(--glass);display:flex;flex-direction:column}
+    .preview{height:800px;border-radius:10px;overflow:hidden;background:var(--glass);display:flex;flex-direction:column}
     .pdf-frame{flex:1;border:0;width:100%}
     .desc{line-height:1.4;color:#cfe6ff}
     footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
@@ -35,7 +35,7 @@
     .download-count{font-weight:700;color:#fff;margin-left:8px}
     .actions{display:flex;gap:8px;align-items:center}
     /* responsive */
-    @media (max-width:900px){.grid{grid-template-columns:1fr;}.cover{height:420px}.preview{height:420px}}
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}.cover{height:420px}.preview{height:600px}}
   </style>
 </head>
 <body>
@@ -46,7 +46,7 @@
         <div style="font-size:12px;color:var(--muted);margin-top:6px">by <strong>Shreyash Srivastva</strong></div>
       </div>
       <div style="text-align:right;color:var(--muted);font-size:13px">
-        <div>PDF • 29 pages</div>
+        <div>PDF • 72 pages</div>
         <div style="margin-top:6px">Format: <strong>PDF</strong></div>
       </div>
     </div>
@@ -62,14 +62,10 @@
 
             <div class="cta" style="margin-top:16px">
               <a class="btn" id="downloadBtn" href="underDestruction.pdf" download="UNDER_DESTRUCTION-Shreyash_Srivastva.pdf">Download PDF</a>
-              <a class="btn secondary" id="openBtn" href="/underDestruction.pdf">Open Preview</a>
+              <a class="btn secondary" id="openBtn" href="#preview">Open Preview</a>
             </div>
 
-            <div class="meta">Instant download. No sign-up. No nonsense. <span id="dlCount" class="download-count">72</span> downloads recorded (local only).</div>
-
-            <div style="margin-top:16px;font-size:13px;color:var(--muted)">
-              <strong>Tip:</strong> Read it with free mind. Will take 10-20 minutes only.
-            </div>
+            <div class="meta">Instant download. No sign-up. No nonsense. <span id="dlCount" class="download-count">0</span> downloads recorded (global).</div>
           </div>
         </div>
       </section>
@@ -85,7 +81,6 @@
           </div>
         </div>
         <div style="flex:1;padding:8px">
-          <!-- PDF embed: fallback order -> object/embed -> link -->
           <object data="underDestruction.pdf" type="application/pdf" class="pdf-frame" aria-label="PDF preview of UNDER DESTRUCTION">
             <embed src="underDestruction.pdf" type="application/pdf" class="pdf-frame">
               <div style="padding:18px;color:var(--muted);">Preview not available in this browser. <a href="underDestruction.pdf" class="btn" style="display:inline-block;margin-top:10px">Download PDF</a></div>
@@ -95,7 +90,7 @@
         <footer class="card" style="margin-top:12px;padding:12px;background:transparent;border-top:1px solid rgba(255,255,255,0.02)">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div style="font-size:13px;color:var(--muted)">© <span id="year"></span> Shreyash Srivastva</div>
-            <div style="font-size:13px;color:var(--muted)">Connect on: <a href="https://x.com/iamsrivastva" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">X</a></div>
+            <div style="font-size:13px;color:var(--muted)">Share: <a href="https://x.com/iamsrivastva" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">X</a></div>
           </div>
         </footer>
       </aside>
@@ -103,23 +98,24 @@
   </main>
 
   <script>
-    // Small client-side download counter (works per-browser; not a server metric)
-    const key = 'underDestruction_dl_count_v1';
     const dlCountEl = document.getElementById('dlCount');
     const downloadBtn = document.getElementById('downloadBtn');
     const openBtn = document.getElementById('openBtn');
     const openInNew = document.getElementById('openInNew');
 
-    function readCount(){
-      try{ return parseInt(localStorage.getItem(key)||'0',10)}catch(e){return 0}
+    async function fetchGlobalCount(){
+      try{
+        const res = await fetch('https://api.countapi.xyz/hit/underdestruction/downloads');
+        const data = await res.json();
+        dlCountEl.textContent = data.value;
+      }catch(e){dlCountEl.textContent = '?';}
     }
-    function writeCount(n){try{localStorage.setItem(key,String(n))}catch(e){}
-    }
-    dlCountEl.textContent = readCount();
 
-    downloadBtn.addEventListener('click', ()=>{
-      const cur = readCount()+1; writeCount(cur); dlCountEl.textContent = cur;
-      // small feedback
+    fetchGlobalCount();
+
+    downloadBtn.addEventListener('click', async ()=>{
+      try{await fetch('https://api.countapi.xyz/hit/underdestruction/downloads');}catch(e){}
+      fetchGlobalCount();
       downloadBtn.textContent = 'Downloading...';
       setTimeout(()=>downloadBtn.textContent = 'Download PDF',1200);
     });
@@ -132,7 +128,6 @@
       window.open('underDestruction.pdf','_blank');
     });
 
-    // auto-year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
