@@ -107,7 +107,7 @@
 
     async function fetchGlobalCount() {
       try {
-        const res = await fetch("https://your-app-name.vercel.app/api/downloads");
+        const res = await fetch("https://your-app-name.vercel.app/api/downloads.js");
         const data = await res.json();
         dlCountEl.textContent = data.value;
       } catch (e) {
@@ -119,7 +119,7 @@
     
     downloadBtn.addEventListener("click", async () => {
       try {
-        await fetch("https://your-app-name.vercel.app/api/downloads");
+        await fetch("https://your-app-name.vercel.app/api/downloads.js");
       } catch (e) {}
       fetchGlobalCount();
       downloadBtn.textContent = "Downloading...";
