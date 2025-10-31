@@ -105,21 +105,25 @@
     const openBtn = document.getElementById('openBtn');
     const openInNew = document.getElementById('openInNew');
 
-    async function fetchGlobalCount(){
-      try{
-        const res = await fetch('https://api.countapi.xyz/hit/underdestruction/downloads');
+    async function fetchGlobalCount() {
+      try {
+        const res = await fetch("https://your-app-name.vercel.app/api/downloads");
         const data = await res.json();
         dlCountEl.textContent = data.value;
-      }catch(e){dlCountEl.textContent = '?';}
+      } catch (e) {
+        dlCountEl.textContent = "⚠";
+      }
     }
-
+    
     fetchGlobalCount();
-
-    downloadBtn.addEventListener('click', async ()=>{
-      try{await fetch('https://api.countapi.xyz/hit/underdestruction/downloads');}catch(e){}
+    
+    downloadBtn.addEventListener("click", async () => {
+      try {
+        await fetch("https://your-app-name.vercel.app/api/downloads");
+      } catch (e) {}
       fetchGlobalCount();
-      downloadBtn.textContent = 'Downloading...';
-      setTimeout(()=>downloadBtn.textContent = 'Download PDF',1200);
+      downloadBtn.textContent = "Downloading...";
+      setTimeout(() => (downloadBtn.textContent = "Download PDF"), 1200);
     });
 
     openBtn.addEventListener('click', (e)=>{
