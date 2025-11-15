@@ -16,7 +16,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#e6eef6;background:linear-gradient(180deg,#071325 0%, #041121 60%);-webkit-font-smoothing:antialiased}
-    .wrap{max-width:1100px;margin:40px auto;padding:28px}
+    .wrap{max-width:480px;margin:auto;padding:auto;align-items: center;}
     .grid{display:grid;grid-template-columns:360px 1fr;gap:28px;align-items:start}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
     .cover{height:520px;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
@@ -33,24 +33,13 @@
     footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
     .badge{display:inline-block;background:rgba(255,255,255,0.03);color:#dbeffd;border-radius:999px;padding:6px 10px;font-size:12px}
     .download-count{font-weight:700;color:#fff;margin-left:8px}
-    .actions{display:flex;gap:8px;align-items:center}
+    .actions{display:flex;gap:8px;justify-content:center;margin-top:12px;}
     @media (max-width:1000px){.grid{grid-template-columns:1fr;}.cover{height:420px}.preview{min-height:80vh}}
   </style>
 </head>
 <body>
   <main class="wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <div>
-        <div class="badge">UNDER DESTRUCTION</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px">by <strong>Shreyash Srivastva</strong></div>
-      </div>
-      <div style="text-align:right;color:var(--muted);font-size:13px">
-        <div>PDF • 29 pages</div>
-        <div style="margin-top:6px">Format: <strong>PDF</strong></div>
-      </div>
-    </div>
-
-    <div class="grid">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"></div>
       <section class="card">
         <div class="cover" aria-hidden="false">
           <!-- <img src="1.png" alt="Under Destruction cover preview (if available)" onerror="this.style.display='none'"> -->
@@ -61,41 +50,20 @@
 
             <div class="cta" style="margin-top:16px">
               <a class="btn" id="downloadBtn" href="underDestruction.pdf" download="UNDER_DESTRUCTION-Shreyash_Srivastva.pdf">Download PDF</a>
-              <a class="btn secondary" id="openBtn" href="#preview">Open Preview</a>
+              <a class="btn secondary" id="openInNew" href="underDestruction.pdf">Open Preview</a>
             </div>
 
             <div class="meta">Instant download. No sign-up. No nonsense.<!--<span id="dlCount" class="download-count">0</span> downloads recorded. --></div>
             <div style="margin-top:16px;font-size:13px;color:var(--muted)">
               <strong>Tip:</strong> Read it with free mind. Will take 10-20 minutes only.
             </div>
-          </div>
-        </div>
-      </section>
-
-      <aside class="card preview" id="preview">
-        <div style="padding:12px;display:flex;align-items:center;justify-content:space-between">
-          <div>
-            <strong style="font-size:15px">Preview</strong>
-            <div style="font-size:13px;color:var(--muted)">Scroll through the PDF below or download to read offline.</div>
-          </div>
-          <div class="actions">
-            <button class="btn secondary" id="openInNew">Open in new tab</button>
-          </div>
-        </div>
-        <div style="flex:1;padding:8px">
-          <object data="underDestruction.pdf" type="application/pdf" class="pdf-frame" aria-label="PDF preview of UNDER DESTRUCTION">
-            <embed src="underDestruction.pdf" type="application/pdf" class="pdf-frame">
-              <div style="padding:18px;color:var(--muted);">Preview not available in this browser. <a href="underDestruction.pdf" class="btn" style="display:inline-block;margin-top:10px">Download PDF</a></div>
-            </embed>
-          </object>
-        </div>
-        <footer class="card" style="margin-top:12px;padding:12px;background:transparent;border-top:1px solid rgba(255,255,255,0.02)">
-          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;color:var(--muted)"><strong>Pages:</strong> 29 pages</div>
+            <div style="font-size:13px;color:var(--muted)"><strong>Format:</strong> PDF</div>
             <div style="font-size:13px;color:var(--muted)">© <span id="year"></span> Shreyash Srivastva</div>
             <div style="font-size:13px;color:var(--muted)">Connect on: <a href="https://x.com/iamsrivastva" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">X</a></div>
           </div>
-        </footer>
-      </aside>
+        </div>
+      </section>
     </div>
   </main>
 
